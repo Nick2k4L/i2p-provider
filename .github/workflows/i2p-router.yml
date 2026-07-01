@@ -64,7 +64,12 @@ jobs:
 
           case "$BACKEND" in
             java)
-              apt-get install -y --no-install-recommends openjdk-17-jre-headless i2p
+              apt-get install -y --no-install-recommends openjdk-17-jre-headless apt-transport-https lsb-release curl
+              curl -fsSL -o /usr/share/keyrings/i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
+              echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" \
+                > /etc/apt/sources.list.d/i2p.list
+              apt-get update
+              apt-get install -y --no-install-recommends i2p i2p-keyring
               ;;
             i2pd)
               apt-get install -y --no-install-recommends i2pd
@@ -358,7 +363,12 @@ jobs:
 
           case "$BACKEND" in
             java)
-              apt-get install -y --no-install-recommends openjdk-17-jre-headless i2p
+              apt-get install -y --no-install-recommends openjdk-17-jre-headless apt-transport-https lsb-release curl
+              curl -fsSL -o /usr/share/keyrings/i2p-archive-keyring.gpg https://i2p.net/i2p-archive-keyring.gpg
+              echo "deb [signed-by=/usr/share/keyrings/i2p-archive-keyring.gpg] https://deb.i2p.net/ $(lsb_release -sc) main" \
+                > /etc/apt/sources.list.d/i2p.list
+              apt-get update
+              apt-get install -y --no-install-recommends i2p i2p-keyring
               ;;
             i2pd)
               apt-get install -y --no-install-recommends i2pd
