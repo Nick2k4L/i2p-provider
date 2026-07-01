@@ -111,9 +111,10 @@ jobs:
           sam_udp_port=7655
 
           write_java_config() {
-            mkdir -p "$I2P_HOME/.i2p"
+            mkdir -p "$I2P_HOME/.i2p/clients.config.d"
             cp "$config_dir/java/router.config" "$I2P_HOME/.i2p/router.config"
-            cp "$config_dir/java/clients.config" "$I2P_HOME/.i2p/clients.config"
+            cp "$config_dir/java/01-net.i2p.sam.SAMBridge-clients.config" \
+              "$I2P_HOME/.i2p/clients.config.d/01-net.i2p.sam.SAMBridge-clients.config"
             chown -R "$JAVA_I2P_USER:$JAVA_I2P_USER" "$I2P_HOME"
 
             sam_enabled=true
@@ -414,9 +415,10 @@ jobs:
           sam_udp_port=7655
 
           write_java_config() {
-            mkdir -p "$I2P_HOME/.i2p"
+            mkdir -p "$I2P_HOME/.i2p/clients.config.d"
             cp "$config_dir/java/router.config" "$I2P_HOME/.i2p/router.config"
-            cp "$config_dir/java/clients.config" "$I2P_HOME/.i2p/clients.config"
+            cp "$config_dir/java/01-net.i2p.sam.SAMBridge-clients.config" \
+              "$I2P_HOME/.i2p/clients.config.d/01-net.i2p.sam.SAMBridge-clients.config"
             chown -R "$JAVA_I2P_USER:$JAVA_I2P_USER" "$I2P_HOME"
 
             sam_enabled=true
