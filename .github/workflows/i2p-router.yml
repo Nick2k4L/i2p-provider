@@ -20,6 +20,9 @@ on:
         required: false
         type: string
         default: java
+      test-command:
+        type: string
+        required: false
 
 jobs:
   router:
@@ -36,7 +39,7 @@ jobs:
       I2P_WORKDIR: /tmp/i2p-router-work
       I2P_STATE_DIR: /tmp/i2p-router-state
       I2P_PID_DIR: /tmp/i2p-router-pids
-      I2P_READY_TIMEOUT_SECONDS: '300'
+      I2P_READY_TIMEOUT_SECONDS: "300"
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -343,7 +346,7 @@ jobs:
       I2P_WORKDIR: /tmp/i2p-router-work
       I2P_STATE_DIR: /tmp/i2p-router-state
       I2P_PID_DIR: /tmp/i2p-router-pids
-      I2P_READY_TIMEOUT_SECONDS: '300'
+      I2P_READY_TIMEOUT_SECONDS: "300"
       ENDPOINT: ${{ matrix.endpoint }}
     steps:
       - name: Check out repository
@@ -611,6 +614,11 @@ jobs:
               exit 1
               ;;
           esac
+
+      - name: Run downstream test command
+        if: inputs.test-command != ''
+        shell: bash
+        run: ${{ inputs.test-command }}
 
       - name: Stop router
         if: always()
