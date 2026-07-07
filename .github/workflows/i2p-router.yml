@@ -325,6 +325,11 @@ jobs:
           fi
           echo "Insert I2P client tests for your application here."
 
+      - name: Run downstream test command
+        if: inputs.test-command != ''
+        shell: bash
+        run: ${{ inputs.test-command }}
+
   endpoint-tests:
     name: Endpoint smoke test (${{ matrix.endpoint }})
     runs-on: ubuntu-latest
@@ -614,11 +619,6 @@ jobs:
               exit 1
               ;;
           esac
-
-      - name: Run downstream test command
-        if: inputs.test-command != ''
-        shell: bash
-        run: ${{ inputs.test-command }}
 
       - name: Stop router
         if: always()
