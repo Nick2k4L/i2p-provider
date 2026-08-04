@@ -218,7 +218,11 @@ runs:
             --router.accept-tunnels=false \
             --i2cp.enabled=true \
             --i2cp.address=127.0.0.1:7654 \
-            --i2pcontrol.enabled=false)
+            --i2pcontrol.enabled=false \
+            --transport.ntcp2-enabled=true \
+            --transport.ntcp2-port=0
+            --transport.ssu2-enabled=true \
+            --transport.ssu2-port=0)
         }
 
         write_emissary_config() {
