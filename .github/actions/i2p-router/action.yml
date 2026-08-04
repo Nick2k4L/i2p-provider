@@ -211,6 +211,7 @@ runs:
         }
 
         write_go_i2p_config() {
+          DEBUG_I2P=error
           sam_enabled=false
           i2pcontrol_enabled=false
           command=(go-i2p \
@@ -299,7 +300,7 @@ runs:
         start_router() {
           trap 'if [[ -f "$router_pid_file" ]]; then kill -TERM "$(cat "$router_pid_file")" 2>/dev/null || true; fi' INT TERM EXIT
 
-          "${command[@]}" &
+          "${command[@]}" > "$I2P_STATE_DIR/router.log" 2>&1 &
           echo $! > "$router_pid_file"
           wait "$!"
         }
